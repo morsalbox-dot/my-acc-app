@@ -31,6 +31,8 @@ setuptools==82.0.1
 shiboken6==6.11.1
 tinycss2==1.5.1
 tinyhtml5==2.1.0
+Flask
+gunicorn
 weasyprint==69.0
 webencodings==0.5.1
 Werkzeug==3.1.8
