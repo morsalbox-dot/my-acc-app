@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>تقرير المصروفات</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.rtl.min.css">
+    <style>
+        @media print {
+            .no-print { display: none; }
+            body { background-color: white; padding: 0; }
+        }
+    </style>
+</head>
+<body class="bg-white p-5">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2>📄 تقرير إجمالي المصروفات التفصيلي</h2>
+            <p class="lead">خلال الفترة من: <strong>{{ start_date }}</strong> إلى: <strong>{{ end_date }}</strong></p>
+        </div>
+
+        <table class="table table-bordered table-striped mt-4">
+            <thead class="table-secondary">
+                <tr>
+                    <th>التاريخ</th>
+                    <th>البند الخاص بالصرف</th>
+                    <th>الإيضاحات والبيان</th>
+                    <th>المبلغ المنصرف</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for row in report_data %}
+                <tr>
+                    <td>{{ row[0] }}</td>
+                    <td>{{ row[1] }}</td>
+                    <td>{{ row[2] }}</td>
+                    <td class="text-danger fw-bold">{{ row[3] }} رس</td>
+                </tr>
+                {% endfor %}
+                <tr class="table-dark">
+                    <td colspan="3" class="text-end fw-bold">إجمالي المصروفات للفترة المحددة:</td>
+                    <td class="fw-bold">{{ total_spent }} رس</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="text-center mt-5 no-print">
+            <button onclick="window.print()" class="btn btn-primary btn-lg">🖨️ طباعة التقرير أو حفظه كـ PDF</button>
+            <button onclick="window.close()" class="btn btn-outline-secondary btn-lg">إغلاق الصفحة</button>
+        </div>
+    </div>
+</body>
+</html>
